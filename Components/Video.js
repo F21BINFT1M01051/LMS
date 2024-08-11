@@ -1,28 +1,21 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
+import { View, TouchableOpacity, StyleSheet, Text , Image} from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
+import * as Progress from 'react-native-progress';
+
 
 export const Videos = (props) => {
     const item = props.item;
 
-    // const PressHandler = () => {
+    // const img1 = require("../assets/img3.jpg");
 
-    //     if (item.text11 == "Graphic Design") {
-    //         props.navigation.navigate("GraphicDesign1")
-
-    //     }
-    //     else {
-    //         console.log('error')
-    //     }
-
-    // }
     return (
         <View>
-            {/* <TouchableOpacity onPress={() => props.navigation.navigate('GraphicDesign1')}> */}
             <View style={styles.container}>
+                <Image source={item.img}  style={{width:170, height:170}} />
+
             </View>
 
-            {/* </TouchableOpacity> */}
             <View style={{ flexDirection: 'row' }}>
                 <Text style={{ fontSize: 12, marginTop: 10, marginLeft: 5 }}> {item.text11} </Text>
                 <FontAwesome5 name="star" solid size={7} color="black" style={{ marginTop: 14, marginLeft: 30 }} />
@@ -35,13 +28,7 @@ export const Videos = (props) => {
                 <Text style={styles.text}>{item.text}</Text>
                 <Text style={styles.text2}>45% Done</Text>
             </View>
-            <View style={{ flexDirection: "row" }}>
-                <View style={styles.line} />
-                <View style={styles.line2} />
-
-
-            </View>
-
+            <Progress.Bar progress={0.3} width={155} color="black" height={4} borderColor="white" borderRadius={10} unfilledColor="lightgray" style={{marginLeft:8}} />
         </View>
     )
 }
@@ -80,6 +67,7 @@ const styles = StyleSheet.create({
         height: 4,
         backgroundColor: 'gray',
         marginTop: 2,
-        borderRadius: 20
+        borderRadius: 20,
+        marginLeft:-3
     },
 })

@@ -12,17 +12,22 @@ export const Skills = ({ item }) => {
 }
 const styles = StyleSheet.create({
     container: {
-        width: 100,
+        width: 110,
         height: 40,
         borderRadius: 20,
         borderColor: 'gray',
         textAlign: 'center',
-        marginLeft:10,
+        marginLeft:15,
         borderWidth:1,
-        alignSelf:'center'
+        alignSelf:'center',
+        marginBottom:5,
+        alignItems:'center',
+        justifyContent:'center'
         // backgroundColor:'red'
     },
     text :{
-        verticalAlign:'middle'
+        alignSelf:'center',
+        fontSize:12
+        
     }
 })

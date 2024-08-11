@@ -1,24 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Questions, GetEnRoll } from '../Components';
-const Screen2 = ({route}) => {
-  const { allUsers } = route.params;
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Questions, GetEnRoll, VideoPlay } from '../Components';
+const Screen2 = (props) => {
   return (
-    <View style={styles.container}>
-      <Questions text={'What is Graphic Designing?'} />
-      <GetEnRoll btnTitle={'Get Enroll'} onPress={()=>console.log('pressed')} />
+    <View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Questions text={'Chapter 1 :  What is Graphic Designing?'} />
+          <Questions text={'Chapter 2 :  What is Logo Designing?'} />
+          <Questions text={'Chapter 3 :  What is Figma Designing?'} />
+          <Questions text={'Chapter 4 :  What is AdobePhotoShop Designing?'} />
+          <Questions text={'Chapter 5 :  What are frameworks of Designing?'} />
 
-      <FlatList
-        data={allUsers}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.userContainer}>
-            <Text style={styles.userText}>Name: {item.name}</Text>
-            <Text style={styles.userText}>Email: {item.email}</Text>
-          </View>
-        )}
-      />
+
+          
+        </View>
+      </ScrollView>
+      
     </View>
+
+
   );
 };
 

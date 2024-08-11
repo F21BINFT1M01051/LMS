@@ -1,7 +1,8 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, Image } from "react-native";
 
 export const Courses = ({ item }) => {
+
     return (
         <View>
             <TouchableOpacity>

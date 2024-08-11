@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Screen2 from './Screen2';
-import Screen3 from './Screen3';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { DashBoard_1 } from './Dashboard1';
+import Courses from './Courses';
+import UserProfile from './Profile';
+import Inbox from './Inbox';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,9 +20,11 @@ const NavigationTabs = () => {
             iconName = focused
               ? 'home'
               : 'home-outline';
-          } else if (route.name === 'Lessons') {
-            iconName = focused ? 'book' : 'book-outline';
-          } else if (route.name === 'Reviews') {
+          } else if (route.name === 'Courses') {
+            iconName = focused ? 'server' : 'server-outline';
+          } else if (route.name === 'Inbox') {
+            iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline';
+          } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
           }
 
@@ -34,8 +37,9 @@ const NavigationTabs = () => {
       }}
     >
       <Tab.Screen name="Dashboard" component={DashBoard_1} />
-      <Tab.Screen name="Lessons" component={Screen2} />
-      <Tab.Screen name="Reviews" component={Screen3} />
+      <Tab.Screen name="Courses" component={Courses} />
+      <Tab.Screen name="Inbox" component={Inbox} />
+      <Tab.Screen name="Profile" component={UserProfile} />
     </Tab.Navigator>
   );
 };

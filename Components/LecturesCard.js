@@ -11,7 +11,7 @@ export const LecturesCard = (props) => {
                         <FontAwesome5 name="book" solid size={26} color="black" />
                         <Text style={{ marginLeft: 7 }}>80+ Lectures</Text>
                     </View>
-                    <View style={{ marginLeft: 100, flexDirection: 'row' }}>
+                    <View style={{ marginLeft: 80, flexDirection: 'row' }}>
                         <FontAwesome5 name="certificate" solid size={26} color="black" />
                         <Text style={{ marginLeft: 7 }}>Certificates</Text>
                     </View>
@@ -22,7 +22,7 @@ export const LecturesCard = (props) => {
                         <FontAwesome5 name="clock" solid size={26} color="black" />
                         <Text style={{ marginLeft: 7 }}>8 Weeks</Text>
                     </View>
-                    <View style={{ marginLeft: 125, flexDirection: 'row' }}>
+                    <View style={{ marginLeft: 105, flexDirection: 'row' }}>
 
                         <FontAwesome5 name="star" solid size={26} color="black" />
                         <Text style={{ marginLeft: 7 }}>10% Off</Text>
@@ -35,11 +35,11 @@ export const LecturesCard = (props) => {
 }
 const styles = StyleSheet.create({
     contain: {
-        width: 430,
+        width: 370,
         height: 120,
         borderRadius: 30,
         backgroundColor: 'skyblue',
         alignSelf: 'center',
-        marginTop: 100
+        marginTop: 80
     }
 })

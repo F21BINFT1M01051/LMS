@@ -14,14 +14,15 @@ export const GetEnRoll = (props) =>{
 
 const styles = StyleSheet.create({
     btn:{
-        marginTop:30,
-        width:220,
-        borderRadius:30,
+        // marginTop:30,
+        width:350,
+        borderRadius:10,
         height:50,
         alignSelf:'center',
         backgroundColor:'black',
         borderColor:'black',
-        borderWidth:2
+        borderWidth:2,
+        marginBottom:20
     },
     btnText:{
         color:'white',

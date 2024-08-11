@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "lms-app",
+    "name": "lms",
     "slug": "lms-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,10 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sana_bwp.lmsapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "02e9a82a-f598-46c4-ba32-a22cac5ba2e4"
+      }
     }
   }
 }

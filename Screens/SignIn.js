@@ -4,12 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { PrimaryText, SecondaryText, Images, Dot, Buttons, Skip, Back, Password } from "../Components";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getFirestore, doc, getDoc, setDoc, addDoc, collection, getDocs } from "firebase/firestore";
-// import Screen2 from "./Screen2";
-
+import { getFirestore, doc, getDoc, setDoc, addDoc, collection, getDocs, } from "firebase/firestore";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { LoginButton, AccessToken } from 'react-native-fbsdk-next';
 
 
 export const Sign_In = (props) => {
+
+    const provider = new FacebookAuthProvider();
+
     const auth = getAuth();
     const db = getFirestore();
 
@@ -18,27 +21,27 @@ export const Sign_In = (props) => {
     const [allUsers, setAllUsers] = useState([]);
 
 
-    const _storeUserCredentials = async ()=>{
-        try{
+    const _storeUserCredentials = async () => {
+        try {
             await AsyncStorage.setItem('email', email);
-            await AsyncStorage.setItem('password',password);
+            await AsyncStorage.setItem('password', password);
             console.log('Credentials stored successfully');
 
         }
-        catch (e){
+        catch (e) {
             console.log(e)
         }
-      
+
     };
 
     const _getUserCredentials = async () => {
-        try{
+        try {
             let email = await AsyncStorage.getItem('email');
             let password = await AsyncStorage.getItem('password');
             console.log('Credentials fetched', { email, password });
             return { email, password };
         }
-        catch(e){
+        catch (e) {
             console.log(e);
             return { email: '', password: '' };
 
@@ -75,32 +78,66 @@ export const Sign_In = (props) => {
                     alert(errorMessage);
                 });
         }
-        else{
+        else {
             console.alert("Wrong Information")
         }
 
     };
 
-    useEffect (()=>{
-        const fetchSingleUser = async ()=> {
-            docRef = doc(db,'users', 'userId');
+    useEffect(() => {
+        const fetchSingleUser = async () => {
+            docRef = doc(db, 'users', 'userId');
             const users = [];
 
             const docSnap = await getDoc(docRef);
-            if(docSnap.exists()){
+            if (docSnap.exists()) {
                 setUserData(docSnap.data())
-            }else {
+            } else {
                 console.log('no such document')
             }
             setAllUsers(users);
         };
 
         fetchSingleUser()
-    },[db]);
+    }, [db]);
 
-    const navigateToScreen2 = () => {
-        props.navigation.navigate('Screen2', { allUsers });
+    // const navigateToScreen2 = () => {
+    //     props.navigation.navigate('Screen2', { allUsers });
+    // }
+
+    const FacebookAuth = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            
+            // The signed-in user info.
+            const user = result.user;
+    
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const credential = FacebookAuthProvider.credentialFromResult(result);
+            const accessToken = credential.accessToken;
+    
+            console.log('Facebook Access Token:', accessToken);
+            console.log('User Info:', user);
+            
+            // Navigate to another screen or perform other actions
+            props.navigation.navigate("NavigationTabs");
+        } catch (error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            const email = error.customData.email;
+            const credential = FacebookAuthProvider.credentialFromError(error);
+    
+            console.log('Error Code:', errorCode);
+            console.log('Error Message:', errorMessage);
+            console.log('Error Email:', email);
+            console.log('Credential:', credential);
+    
+            alert(`Facebook Auth Failed: ${errorMessage}`);
+        }
     }
+    
+
 
     return (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -130,7 +167,7 @@ export const Sign_In = (props) => {
                 </View>
             </View>
             <View>
-                <TouchableOpacity style={styles.btn2} onPress={() => props.navigation.navigate('GraphicDesign1')}>
+                <TouchableOpacity style={styles.btn2} onPress={FacebookAuth}>
                     <View style={{ flexDirection: 'row' }}>
                         <Icon name="facebook" size={30} color="white" style={{ marginLeft: 25, marginTop: 8 }} />
                         <Text style={{ color: 'white', fontSize: 18, marginTop: 10, marginLeft: 20 }}>Sign In with Facebook</Text>
@@ -151,11 +188,6 @@ export const Sign_In = (props) => {
                 <TouchableOpacity onPress={() => props.navigation.navigate("SignUp")}>
                     <Text style={styles.text7}>Sign up Here</Text>
 
-                </TouchableOpacity>
-            </View>
-            <View style={{ padding: 20 }}>
-                <TouchableOpacity onPress={navigateToScreen2}>
-                    <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'blue' }}>View All Users</Text>
                 </TouchableOpacity>
             </View>
         </View>

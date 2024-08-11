@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Splash1 } from './Screens/Splash1';
@@ -12,11 +12,17 @@ import { Update } from './Screens/UpdatedPassword';
 import { Sign_Up } from './Screens/SignUp';
 import { DashBoard_1 } from './Screens/Dashboard1';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { GraphicDesign_1 } from './Screens/GraphicDesign1';
 import { VideoPlay } from './Components';
 import NavigationTabs from './Screens/NavigationTabs';
 import app from './Firebase';
 import VideoTabs from './Screens/MyTabs';
+import GetEnrollScreen from './Screens/GetEnrollScreen';
+import PaymentScreen from './Screens/PaymentScreen';
+import PaymentScreen2 from './Screens/PaymentScreen2';
+import PaymentScreen3 from './Screens/PaymentScreen3';
+import Notifications from './Screens/Notifications';
+import Settings from './Screens/Settings';
+import { GraphicDesign_1 } from './Screens/GraphicDesign1';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +32,6 @@ export default function App() {
       <Stack.Navigator screenOptions={{
         headerShown: false,
       }} >
-        {/* <Stack.Screen name='NavigationTabs' component={NavigationTabs} /> */}
 
         <Stack.Screen name='Splash1' component={Splash1} />
         <Stack.Screen name='Splash2' component={Splash2} />
@@ -37,11 +42,21 @@ export default function App() {
         <Stack.Screen name='ResetPassword' component={ResetPassword} />
         <Stack.Screen name='UpdatePassword' component={Update} />
         <Stack.Screen name='SignUp' component={Sign_Up} />
-        {/* <Stack.Screen name='Dashboard1' component={DashBoard_1} /> */}
-        <Stack.Screen name='GraphicDesign1' component={GraphicDesign_1} />
-        {/* <Stack.Screen name='VideoPlay' component={VideoPlay} /> */}
-        {/* <Stack.Screen name='VideoTabs' component={VideoTabs} /> */}
         <Stack.Screen name='NavigationTabs' component={NavigationTabs} />
+        <Stack.Screen name='GetEnrollScreen' component={GetEnrollScreen} />
+        <Stack.Screen name='PaymentScreen' component={PaymentScreen} />
+        <Stack.Screen name='PaymentScreen2' component={PaymentScreen2} />
+        <Stack.Screen name='PaymentScreen3' component={PaymentScreen3} />
+        <Stack.Screen name='Notifications' component={Notifications} />
+        <Stack.Screen name='Settings' component={Settings} />
+        <Stack.Screen name='Dashboard1' component={DashBoard_1} />
+        <Stack.Screen name='GraphicDesign1' component={GraphicDesign_1} />
+
+
+
+
+
+
 
 
       </Stack.Navigator>
